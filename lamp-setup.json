@@ -271,10 +271,12 @@
         }
       },
       "Properties": {
-        "Tags": {
-          "Key": "Name",
-          "Value": "Robert Morel"
-        },
+        "Tags": [
+          {
+            "Key": "name",
+            "Value": "Robert Morel"
+          }
+        ],
         "ImageId": {
           "Fn::FindInMap": [
             "AWSRegionArch2AMI",
