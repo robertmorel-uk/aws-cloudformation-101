@@ -90,14 +90,13 @@
   },
 
   "Resources": {
-    "WebServerInstance": {
+    "LampSetup": {
       "Type": "AWS::EC2::Instance",
       "Metadata": {
         "AWS::CloudFormation::Init": {
           "configSets": {
             "InstallAndRun": ["Install", "Configure"]
           },
-
           "Install": {
             "packages": {
               "yum": {
@@ -182,11 +181,11 @@
                     [
                       "[cfn-auto-reloader-hook]\n",
                       "triggers=post.update\n",
-                      "path=Resources.WebServerInstance.Metadata.AWS::CloudFormation::Init\n",
+                      "path=Resources.LampSetup.Metadata.AWS::CloudFormation::Init\n",
                       "action=/opt/aws/bin/cfn-init -v ",
                       "         --stack ",
                       { "Ref": "AWS::StackName" },
-                      "         --resource WebServerInstance ",
+                      "         --resource LampSetup ",
                       "         --configsets InstallAndRun ",
                       "         --region ",
                       { "Ref": "AWS::Region" },
@@ -272,6 +271,10 @@
         }
       },
       "Properties": {
+        "Tags": {
+          "Key": "Name",
+          "Value": "Robert Morel"
+        },
         "ImageId": {
           "Fn::FindInMap": [
             "AWSRegionArch2AMI",
@@ -300,7 +303,7 @@
                 "/opt/aws/bin/cfn-init -v ",
                 "         --stack ",
                 { "Ref": "AWS::StackName" },
-                "         --resource WebServerInstance ",
+                "         --resource LampSetup ",
                 "         --configsets InstallAndRun ",
                 "         --region ",
                 { "Ref": "AWS::Region" },
@@ -310,7 +313,7 @@
                 "/opt/aws/bin/cfn-signal -e $? ",
                 "         --stack ",
                 { "Ref": "AWS::StackName" },
-                "         --resource WebServerInstance ",
+                "         --resource LampSetup ",
                 "         --region ",
                 { "Ref": "AWS::Region" },
                 "\n"
@@ -354,9 +357,13 @@
       "Value": {
         "Fn::Join": [
           "",
-          ["http://", { "Fn::GetAtt": ["WebServerInstance", "PublicDnsName"] }]
+          ["http://", { "Fn::GetAtt": ["LampSetup", "PublicDnsName"] }]
         ]
       }
+    },
+    "InstanceId": {
+      "Description": "Instance ID of LampSetup",
+      "Value": { "Ref": "LampSetup" }
     }
   }
 }
