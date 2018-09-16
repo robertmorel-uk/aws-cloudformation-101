@@ -1,0 +1,7 @@
+{
+  "Resources": {
+    "Name-of-bucket": {
+      "Type": "Resource-type"
+    }
+  }
+}
