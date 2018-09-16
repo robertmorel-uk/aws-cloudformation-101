@@ -1,0 +1,4 @@
+#Creates an s3 bucket
+Resources:
+  MyFirstExampleBucket:
+    Type: AWS::S3::Bucket
