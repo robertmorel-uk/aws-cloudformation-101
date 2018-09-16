@@ -1,0 +1,31 @@
+{
+  "AWSTemplateFormatVersion": "yyyy-mm-dd",
+  "Description": "Give some details about the template",
+  "Metadata": {
+    "AWS::CloudFormation::Init": {
+      "config": {},
+      "packages": {},
+      "groups": {},
+      "users": {},
+      "services": {}
+    }
+  },
+  "Parameters": {
+    "InstanceTypeParameter": {
+      "Type": "String",
+      "Default": "t2.micro",
+      "AllowedValues": ["t2.micro", "m1.small, m1.large"],
+      "Description": "Enter t2.micro, m1.small or m1.large"
+    }
+  },
+  "Mappings": "set of mappings",
+  "Conditions": "set of conditions",
+  "Transform": "set of transforms",
+  "Resources": {
+    "MyFirstExampleBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": { "ImageId": "ami-2133456" }
+    }
+  },
+  "Outputs": "set of outputs"
+}

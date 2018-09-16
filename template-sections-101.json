@@ -1,0 +1,11 @@
+{
+  "AWSTemplateFormatVersion": "yyyy-mm-dd",
+  "Description": "JSON string",
+  "Metadata": "set of metadata",
+  "Parameters": "set of parameters",
+  "Mappings": "set of mappings",
+  "Conditions": "set of conditions",
+  "Transform": "set of transforms",
+  "Resources": "set of resources",
+  "Outputs": "set of outputs"
+}
